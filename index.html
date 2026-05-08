@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grady's Tax Service – Family Owned & Trusted</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fdf6ec;
+      --warm-white: #fff9f2;
+      --brown: #5c3d2e;
+      --brown-light: #7a5444;
+      --gold: #c8933a;
+      --gold-light: #e8b96a;
+      --green: #3a6b4a;
+      --green-light: #508060;
+      --text: #2e1f14;
+      --text-muted: #7a6557;
+      --border: #e8d5c0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      background: var(--brown);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: #fff; font-weight: 300; font-size: 1rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: #f0e0cc;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: linear-gradient(135deg, var(--brown) 0%, #3e2519 55%, var(--green) 100%);
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200,147,58,0.2);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      color: #fff;
+      line-height: 1.15;
+      max-width: 780px;
+      margin: 0 auto 1.2rem;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+    .hero h1 em { color: var(--gold-light); font-style: normal; }
+    .hero p {
+      color: #d9c4ae;
+      font-size: 1.15rem;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      font-weight: 300;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: #fff;
+      padding: 0.9rem 2.2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 16px rgba(200,147,58,0.35);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.4);
+      padding: 0.9rem 2.2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+    .hero-ribbon {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: var(--cream);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    /* ---- TRUST BAR ---- */
+    .trust-bar {
+      background: var(--warm-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .trust-item svg { color: var(--green); flex-shrink: 0; }
+
+    /* ---- SECTION STYLES ---- */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--brown);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 560px;
+      font-weight: 300;
+    }
+
+    /* ---- SERVICES ---- */
+    #services { background: var(--cream); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .service-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gold);
+      border-radius: 4px 0 0 4px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(92,61,46,0.1); }
+    .service-card:hover::after { opacity: 1; }
+    .service-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--brown);
+      margin-bottom: 0.6rem;
+    }
+    .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; }
+
+    /* ---- ABOUT ---- */
+    #about { background: var(--warm-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-placeholder {
+      background: linear-gradient(145deg, var(--brown) 0%, var(--green) 100%);
+      border-radius: 16px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      box-shadow: 8px 8px 0 var(--border);
+    }
+    .about-floater {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--gold);
+      border-radius: 12px;
+      padding: 1.2rem 1.6rem;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(200,147,58,0.3);
+      text-align: center;
+    }
+    .about-floater .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      display: block;
+    }
+    .about-floater .lbl { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.9; }
+    .about-text .values {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .value-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+    }
+    .value-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .value-item strong { color: var(--brown); font-size: 1rem; }
+    .value-item p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-top: 0.15rem; }
+
+    /* ---- CONTACT ---- */
+    #contact { background: var(--cream); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .contact-icon {
+      width: 42px; height: 42px;
+      background: var(--brown);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold-light);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-item h4 { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .contact-item p { color: var(--brown); font-weight: 700; font-size: 1rem; }
+    .contact-form {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem;
+    }
+    .contact-form h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--brown);
+      margin-bottom: 0.4rem;
+    }
+    .contact-form > p { color: var(--text-muted); font-size: 0.93rem; margin-bottom: 1.8rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+    .form-group input, .form-group select, .form-group textarea {
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.97rem;
+      color: var(--text);
+      background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200,147,58,0.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .btn-submit {
+      width: 100%;
+      background: var(--brown);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { background: var(--brown-light); transform: translateY(-1px); }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: var(--green);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--brown);
+      color: #d9c4ae;
+      text-align: center;
+      padding: 2.5rem 2rem;
+    }
+    footer .foot-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+    footer p { font-size: 0.88rem; opacity: 0.7; }
+    footer a { color: var(--gold-light); text-decoration: none; }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Grady's <span>Tax Service</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">Family Owned &amp; Operated</div>
+    <h1>Taxes Made <em>Simple</em>,<br/>Service Made Personal</h1>
+    <p>At Grady's Tax Service, we treat every client like family. Honest guidance, accurate returns, and a team that truly cares about your financial wellbeing.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get a Free Consultation</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-ribbon"></div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    IRS Certified
+  </div>
+  <div class="trust-item">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+    Family Business
+  </div>
+  <div class="trust-item">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Year-Round Support
+  </div>
+  <div class="trust-item">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+    Hundreds Served
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Tax Services for Every Need</h2>
+      <p class="section-subtitle">Whether you're filing as an individual, a small business owner, or need help navigating a complicated tax situation — we've got you covered.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">📄</div>
+        <h3>Individual Tax Returns</h3>
+        <p>We prepare accurate federal and state income tax returns for individuals and families, maximizing your refund while minimizing your stress.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🏢</div>
+        <h3>Small Business Taxes</h3>
+        <p>From sole proprietors to LLCs and S-Corps, we handle your business tax filings with precision and help you keep more of what you earn.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📊</div>
+        <h3>Tax Planning</h3>
+        <p>Don't wait until April. We work with you year-round to develop smart strategies that reduce your tax burden and set you up for long-term success.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🔍</div>
+        <h3>IRS Audit Assistance</h3>
+        <p>Received an audit notice? Don't panic. We represent you before the IRS and guide you through every step of the process with confidence.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">💼</div>
+        <h3>Bookkeeping Services</h3>
+        <p>Stay organized all year long with our bookkeeping support — clean books make for easier tax seasons and smarter business decisions.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🎓</div>
+        <h3>First-Time Filers</h3>
+        <p>Filing taxes for the first time? We'll walk you through everything, answer all your questions, and make sure you start on the right foot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img-placeholder">👨‍👩‍👧‍👦</div>
+        <div class="about-floater">
+          <span class="num">20+</span>
+          <span class="lbl">Years of Service</span>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">A Family You Can Trust with Your Finances</h2>
+        <p class="section-subtitle">Grady's Tax Service was founded on a simple belief: everyone deserves honest, affordable, and personal tax help — not just the wealthy or well-connected.</p>
+        <div class="values">
+          <div class="value-item">
+            <div class="value-dot"></div>
+            <div>
+              <strong>Rooted in Community</strong>
+              <p>We've proudly served our neighbors for over two decades, building trust one return at a time.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-dot"></div>
+            <div>
+              <strong>Real People, Not Algorithms</strong>
+              <p>When you come to us, you sit down with a real person who listens, cares, and fights for your best outcome.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-dot"></div>
+            <div>
+              <strong>Transparent & Affordable</strong>
+              <p>No hidden fees, no surprises. We believe in upfront pricing and clear communication every step of the way.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Reach Out</div>
+      <h2 class="section-title">Let's Talk About Your Taxes</h2>
+      <p class="section-subtitle">Have a question or ready to get started? Send us a message and we'll get back to you within one business day.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <p>(555) 123-4567</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <p>info@gradystaxservice.com</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Office</h4>
+            <p>123 Main Street<br/>Your City, ST 00000</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h4>Hours</h4>
+            <p>Mon–Fri: 9am – 6pm<br/>Sat: 10am – 3pm</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <h3>Send Us a Message</h3>
+        <p>We'll get back to you within one business day.</p>
+        <div id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Jane" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Smith" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="jane@example.com" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="(555) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label>Service Needed</label>
+            <select>
+              <option value="">Select a service…</option>
+              <option>Individual Tax Return</option>
+              <option>Small Business Taxes</option>
+              <option>Tax Planning</option>
+              <option>IRS Audit Assistance</option>
+              <option>Bookkeeping</option>
+              <option>First-Time Filer</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Tell us a bit about your situation…"></textarea>
+          </div>
+          <button class="btn-submit" onclick="submitForm()">Send Message →</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          ✅ Thank you! We'll be in touch shortly.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Grady's Tax Service</div>
+  <p>© 2025 Grady's Tax Service · <a href="mailto:info@gradystaxservice.com">info@gradystaxservice.com</a> · All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit
+  function submitForm() {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>
