@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grady's Tax Service – Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fdf6ec;
+      --warm-white: #fff9f2;
+      --brown: #5c3d2e;
+      --brown-light: #7a5444;
+      --gold: #c8933a;
+      --gold-light: #e8b96a;
+      --green: #3a6b4a;
+      --green-light: #508060;
+      --text: #2e1f14;
+      --text-muted: #7a6557;
+      --border: #e8d5c0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ---- BACKGROUND ---- */
+    .bg {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--brown) 0%, #3e2519 55%, var(--green) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    .orb-1 { width: 420px; height: 420px; background: var(--gold); top: -100px; left: -120px; animation-delay: 0s; }
+    .orb-2 { width: 320px; height: 320px; background: var(--green-light); bottom: -80px; right: -80px; animation-delay: -4s; }
+    .orb-3 { width: 200px; height: 200px; background: var(--gold-light); top: 50%; left: 60%; animation-delay: -8s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    /* ---- CARD ---- */
+    .card {
+      position: relative;
+      z-index: 2;
+      background: rgba(253, 246, 236, 0.07);
+      border: 1px solid rgba(232, 217, 192, 0.2);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 20px;
+      padding: 3.5rem 3rem;
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.25);
+      animation: fadeUp 0.9s ease both;
+    }
+
+    /* ---- LOGO ---- */
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+      letter-spacing: 0.02em;
+    }
+    .logo span { color: rgba(255,255,255,0.6); font-weight: 300; font-size: 1rem; }
+
+    /* ---- ICON ---- */
+    .icon-wrap {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem;
+      margin: 0 auto 1.8rem;
+      box-shadow: 0 8px 28px rgba(200,147,58,0.4);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 8px 28px rgba(200,147,58,0.4); }
+      50%       { box-shadow: 0 8px 44px rgba(200,147,58,0.65); }
+    }
+
+    /* ---- BADGE ---- */
+    .badge {
+      display: inline-block;
+      background: rgba(200,147,58,0.18);
+      border: 1px solid rgba(200,147,58,0.5);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.35rem 1.1rem;
+      border-radius: 30px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ---- HEADLINE ---- */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    h1 em { color: var(--gold-light); font-style: normal; }
+
+    .subtitle {
+      color: rgba(217, 196, 174, 0.9);
+      font-size: 1rem;
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ---- PROGRESS BAR ---- */
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(217,196,174,0.7);
+      margin-bottom: 0.5rem;
+    }
+    .progress-track {
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 30px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 30px;
+      transition: width 2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ---- DIVIDER ---- */
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(232,217,192,0.15);
+      margin: 0 0 2rem;
+    }
+
+    /* ---- NOTIFY FORM ---- */
+    .notify-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(217,196,174,0.7);
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+    .notify-row {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .notify-row input {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(232,217,192,0.25);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .notify-row input::placeholder { color: rgba(217,196,174,0.45); }
+    .notify-row input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200,147,58,0.15);
+    }
+    .notify-btn {
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.4rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .notify-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .notify-success {
+      display: none;
+      color: var(--gold-light);
+      font-size: 0.95rem;
+      padding: 0.6rem 0;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    /* ---- CONTACT ROW ---- */
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .contact-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(217,196,174,0.75);
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-chip:hover { color: var(--gold-light); }
+    .contact-chip svg { opacity: 0.7; }
+
+    /* ---- FOOTER TEXT ---- */
+    .foot-note {
+      position: relative;
+      z-index: 2;
+      margin-top: 2rem;
+      color: rgba(217,196,174,0.4);
+      font-size: 0.8rem;
+      text-align: center;
+      letter-spacing: 0.04em;
+      animation: fadeUp 1s 0.4s ease both;
+    }
+
+    /* ---- ANIM ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<div class="bg">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="card">
+    <div class="logo">Grady's <span>Tax Service</span></div>
+
+    <div class="icon-wrap">🔨</div>
+
+    <div class="badge">Site Under Construction</div>
+
+    <h1>Something <em>Great</em><br/>Is Coming Soon</h1>
+
+    <p class="subtitle">
+      We're putting the finishing touches on our new website.<br/>
+      In the meantime, we're still open and ready to help with all your tax needs!
+    </p>
+
+    <div class="progress-label">
+      <span>Progress</span>
+      <span id="pct">0%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <hr class="divider"/>
+
+    <p class="notify-label">Notify me when it's ready</p>
+    <div class="notify-row" id="notifyRow">
+      <input type="email" id="notifyEmail" placeholder="your@email.com" />
+      <button class="notify-btn" onclick="submitNotify()">Notify Me</button>
+    </div>
+    <div class="notify-success" id="notifySuccess">✅ You're on the list! We'll reach out when we launch.</div>
+
+    <div class="contact-row">
+      <a href="tel:5551234567" class="contact-chip">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        (555) 123-4567
+      </a>
+      <a href="mailto:info@gradystaxservice.com" class="contact-chip">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        info@gradystaxservice.com
+      </a>
+    </div>
+  </div>
+
+  <p class="foot-note">© 2025 Grady's Tax Service &nbsp;·&nbsp; Family Owned &amp; Operated</p>
+</div>
+
+<script>
+  // Animate progress bar on load
+  window.addEventListener('load', () => {
+    const fill = document.getElementById('progressFill');
+    const pct  = document.getElementById('pct');
+    const target = 72;
+    setTimeout(() => {
+      fill.style.width = target + '%';
+      let current = 0;
+      const step = () => {
+        current++;
+        pct.textContent = current + '%';
+        if (current < target) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, 400);
+  });
+
+  // Notify form
+  function submitNotify() {
+    const email = document.getElementById('notifyEmail').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('notifyEmail').focus();
+      return;
+    }
+    document.getElementById('notifyRow').style.display = 'none';
+    document.getElementById('notifySuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>
