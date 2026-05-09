@@ -340,14 +340,25 @@
   });
 
   // Notify form
-  function submitNotify() {
+  async function submitNotify() {
     const email = document.getElementById('notifyEmail').value.trim();
     if (!email || !email.includes('@')) {
       document.getElementById('notifyEmail').focus();
       return;
     }
-    document.getElementById('notifyRow').style.display = 'none';
-    document.getElementById('notifySuccess').style.display = 'block';
+
+    const response = await fetch('https://formspree.io/f/xbdwzzoq', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    });
+
+    if (response.ok) {
+      document.getElementById('notifyRow').style.display = 'none';
+      document.getElementById('notifySuccess').style.display = 'block';
+    } else {
+      alert('Something went wrong. Please try again!');
+    }
   }
 </script>
 </body>
